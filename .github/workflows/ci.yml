@@ -1,0 +1,49 @@
+name: CI
+on:
+  push:
+    branches: [main]
+  pull_request:
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    # This package depends on @shadowagentapp/sdk via `file:../shade-sdk`, a sibling folder. CI checks each repo out
+    # in isolation, so the SDK is checked out and built next to it:
+    #   <workspace>/main       -> this repo
+    #   <workspace>/shade-sdk  -> the SDK, so `../shade-sdk` resolves.
+    defaults:
+      run:
+        working-directory: main
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: main
+      - name: Checkout SDK (file:../shade-sdk dependency)
+        uses: actions/checkout@v4
+        with:
+          repository: shadowagentapp/shade-sdk
+          path: shade-sdk
+      # No `version:` here: pnpm/action-setup reads `packageManager` from package.json, and setting both fails.
+      - uses: pnpm/action-setup@v4
+        with:
+          package_json_file: main/package.json
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+          cache-dependency-path: main/pnpm-lock.yaml
+      - name: Build SDK dependency
+        working-directory: shade-sdk
+        run: |
+          pnpm install --frozen-lockfile
+          pnpm build
+      - run: pnpm install --frozen-lockfile
+      - name: Lint
+        run: pnpm lint
+      - name: Typecheck
+        run: pnpm typecheck
+      - name: Test
+        run: pnpm test
+      - name: Build
+        run: pnpm build
+      - name: CLI smoke test
+        run: node dist/index.js --version

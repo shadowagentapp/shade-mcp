@@ -26,8 +26,8 @@ Planned once the protocol exists (not built): registry lookup, real proof verifi
 From a checkout, with `shade-sdk` cloned next to it (the dependency is `file:../shade-sdk` until it is on npm):
 
 ```sh
-git clone git@github.com:shadowagentapp/shade-sdk.git
-git clone git@github.com:shadowagentapp/shade-mcp.git
+git clone https://github.com/shadowagentapp/shade-sdk.git
+git clone https://github.com/shadowagentapp/shade-mcp.git
 (cd shade-sdk && pnpm install && pnpm build)
 cd shade-mcp && pnpm install && pnpm build
 ```
@@ -40,6 +40,15 @@ Then add it to your MCP client, for example:
     "shade": { "command": "node", "args": ["/path/to/shade-mcp/dist/index.js"] }
   }
 }
+```
+
+## Example
+
+A runnable example that needs no network: [`examples/client.mjs`](examples/client.mjs) starts the server over stdio, lists the tools, builds a request and checks an `example-only` envelope (comes back `rejected` at the proof step, by design).
+
+```sh
+pnpm install && pnpm build
+pnpm example
 ```
 
 ## Develop
@@ -55,6 +64,18 @@ pnpm build
 Fixtures in `test/fixtures/` are the `shade-spec` example vectors: filler bytes and the reserved `example-only` proof
 system, not real data.
 
+## Contributing
+
+This is a pre-release draft, so issues and small pull requests are welcome, especially on the spec text and edge
+cases.
+
+- Open an issue first for anything bigger than a fix: <https://github.com/shadowagentapp/shade-mcp/issues>.
+- Before a pull request, run `pnpm lint && pnpm typecheck && pnpm test && pnpm build`; CI runs the same.
+- Use [Conventional Commits](https://www.conventionalcommits.org) (`fix: ...`, `feat: ...`, `docs: ...`).
+- Do not add chain ids, contract addresses, fees or token numbers: none are decided. Example data uses filler bytes and
+  local dev chain ids, and says so.
+- Security issues: email core@shadowagent.app instead of opening a public issue.
+
 ## License
 
-MIT
+MIT, see [LICENSE](LICENSE).

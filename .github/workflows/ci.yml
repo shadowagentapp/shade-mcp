@@ -45,5 +45,7 @@ jobs:
         run: pnpm test
       - name: Build
         run: pnpm build
+      - name: Example
+        run: pnpm example
       - name: CLI smoke test
         run: node dist/index.js --version

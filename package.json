@@ -3,14 +3,16 @@
   "version": "0.0.1",
   "description": "MCP server that lets AI agents build ShadowAgent disclosure requests and run structural passport proof checks (spec draft v0). Local, read-only, never holds a key.",
   "license": "MIT",
-  "author": "ShadowAgent",
+  "author": "ShadowAgent <core@shadowagent.app> (https://shadowagent.app)",
   "type": "module",
   "homepage": "https://shadowagent.app",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/shadowagentapp/shade-mcp.git"
   },
-  "bugs": "https://github.com/shadowagentapp/shade-mcp/issues",
+  "bugs": {
+    "url": "https://github.com/shadowagentapp/shade-mcp/issues"
+  },
   "keywords": [
     "shadowagent",
     "mcp",
@@ -37,7 +39,8 @@
     "lint": "eslint . && prettier --check .",
     "format": "prettier --write .",
     "test": "vitest run",
-    "start": "node dist/index.js"
+    "start": "node dist/index.js",
+    "example": "node examples/client.mjs"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.32.2",

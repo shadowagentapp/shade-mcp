@@ -1,0 +1,14 @@
+{
+  "version": "shade-request/0",
+  "audience": "example-venue",
+  "nonce": "0x00112233445566778899aabbccddeeff",
+  "issuedAt": "2026-01-01T00:00:00Z",
+  "expiresAt": "2026-01-01T00:05:00Z",
+  "requirements": [
+    { "kind": "passport-active" },
+    { "kind": "tier", "min": "basic" },
+    { "kind": "permission", "scope": "trade.spot", "limit": { "asset": "usd", "op": "lte", "amount": "1000" } },
+    { "kind": "performance", "metric": "win-rate", "min": 0.55, "window": "30d" },
+    { "kind": "compliance", "policy": "not-sanctioned" }
+  ]
+}

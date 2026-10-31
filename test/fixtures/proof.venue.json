@@ -1,0 +1,17 @@
+{
+  "version": "shade-proof/0",
+  "passportId": "0x1111111111111111111111111111111111111111111111111111111111111111",
+  "audience": "example-venue",
+  "nonce": "0x00112233445566778899aabbccddeeff",
+  "keyEpoch": 0,
+  "issuedAt": "2026-01-01T00:01:00Z",
+  "expiresAt": "2026-01-01T00:05:00Z",
+  "claims": [
+    { "kind": "passport-active" },
+    { "kind": "tier", "min": "high-assurance" },
+    { "kind": "permission", "scope": "trade.spot", "limit": { "asset": "usd", "op": "lte", "amount": "500" } },
+    { "kind": "performance", "metric": "win-rate", "min": 0.6, "window": "30d" },
+    { "kind": "compliance", "policy": "not-sanctioned" }
+  ],
+  "proof": { "system": "example-only", "data": "ZXhhbXBsZS1vbmx5" }
+}

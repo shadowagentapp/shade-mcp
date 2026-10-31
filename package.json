@@ -1,0 +1,57 @@
+{
+  "name": "@shadowagentapp/mcp",
+  "version": "0.0.1",
+  "description": "MCP server that lets AI agents build ShadowAgent disclosure requests and run structural passport proof checks (spec draft v0). Local, read-only, never holds a key.",
+  "license": "MIT",
+  "author": "ShadowAgent",
+  "type": "module",
+  "homepage": "https://shadowagent.app",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shadowagentapp/shade-mcp.git"
+  },
+  "bugs": "https://github.com/shadowagentapp/shade-mcp/issues",
+  "keywords": [
+    "shadowagent",
+    "mcp",
+    "model-context-protocol",
+    "ai-agents",
+    "selective-disclosure",
+    "privacy"
+  ],
+  "bin": {
+    "shade-mcp": "dist/index.js"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "packageManager": "pnpm@11.9.0",
+  "scripts": {
+    "build": "tsup",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint . && prettier --check .",
+    "format": "prettier --write .",
+    "test": "vitest run",
+    "start": "node dist/index.js"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.32.2",
+    "@shadowagentapp/sdk": "file:../shade-sdk",
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@types/node": "^24.19.2",
+    "eslint": "^10.13.0",
+    "prettier": "^3.9.10",
+    "tsup": "^8.5.1",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.72.1",
+    "vitest": "^4.1.12"
+  }
+}
